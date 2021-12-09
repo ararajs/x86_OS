@@ -31,9 +31,7 @@ print_string:
     exit:
         popa
         ret
-
-
-
+        
 print_hex:
     pusha
     mov ah, 0x0E
@@ -75,14 +73,5 @@ print_hex:
     popa
     ret
 
-    
-
-
-
-
-
-
-
-
 hex_table:
-    db "0123456789ABCDEF",0
+    db "0123456789abcdef",0
