@@ -20,15 +20,15 @@ print_string:
     dec cx
     mov dx, cx
     mov ah, 0x0E
-    print_loop:
+    .print_loop:
         mov al, [si]
         int 0x10
         cmp dx, 0x1
-        je exit
+        je .exit
         dec dx
         add si, 1
-        jmp print_loop        
-    exit:
+        jmp .print_loop        
+    .exit:
         popa
         ret
         
@@ -40,14 +40,14 @@ print_hex:
     mov al, 0x78
     int 0x10
     mov bx, hex_table
-    hex_fn:
+    .hex_fn:
         push dx
         shr dx, 12
         mov al, dl
         xlat
         int 0x10
         pop dx
-    hex_sn:
+    .hex_sn:
         push dx
         shr dx, 8
         and dx, 0x0F
@@ -55,7 +55,7 @@ print_hex:
         xlat
         int 0x10
         pop dx
-    hex_tn:
+    .hex_tn:
         push dx
         shr dx, 4
         and dx, 0x00F
@@ -63,13 +63,15 @@ print_hex:
         xlat
         int 0x10
         pop dx
-    hex_fon:
+    .hex_fon:
         push dx
         and dx, 0x000F
         mov al,dl
         xlat
         int 0x10
         pop dx
+    mov al, 0
+    int 0x10
     popa
     ret
 

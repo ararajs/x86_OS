@@ -2,7 +2,7 @@
 ;0x7c00 is relative MBR (Master Boot Record) location, hence assembly codes start from there.
 ;AH = 0x00  and int 0x16 for write char
 ;AH = 0x0E and int 0x10 for teletype dis
-
+;;Little endianess :- LSB to MSB in memory (LSB is accessed before MSB)
 ;;Boot sector loads exactly, hence if DH val is higher than total number of sectors available, there might be a disc error.
 
 [org 0x7c00] ;To let code do relative indexing for data with respective to MBR
