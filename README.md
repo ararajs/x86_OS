@@ -32,6 +32,8 @@ It is essential that we have these following softwares installed, and are added 
 1) [mingw32](https://sourceforge.net/projects/mingw/) - A minimalistic GNU port
 2) [nasm](https://www.nasm.us/) - An x86 assembler
 3) [QEMU](https://www.qemu.org/) - A open-source machine emulator
+
+
 For instructions on how to add the installed locations to path, click [here](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/).
 
 To create the OS image and run it on QEMU
