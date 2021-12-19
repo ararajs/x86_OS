@@ -21,6 +21,7 @@ uint16_t port_word_in (uint16_t port){
             : "=a" (result)
             : "d" (port)
             );
+    return result;
 }
 
 void port_word_out (uint16_t port, uint16_t data){
