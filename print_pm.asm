@@ -11,7 +11,7 @@ print_string_32:
         mov ah, COLOR
         cmp al,0
         je .done
-        mov [edx + 2*(9*80+0)], ax
+        mov [edx + 2*(10*80+0)], ax
         add ebx,1
         add edx,2
         jmp .print_loop
