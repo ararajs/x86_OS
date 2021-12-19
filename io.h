@@ -1,3 +1,16 @@
+
+void stop_interrupt(){
+    __asm__ __volatile__(
+        "cli"
+    );
+}
+
+void start_interrupt(){
+    __asm__ __volatile__(
+        "sti"
+    );
+}
+
 uint8_t port_byte_in(uint16_t port){
     //Input from port, stored at result;
     uint8_t result;
@@ -29,4 +42,10 @@ void port_word_out (uint16_t port, uint16_t data){
             : 
             : "a" (data),"d" (port)
             );
+}
+
+void memcpy(uint8_t* source, uint8_t* dest, int nb){
+    for (int i = 0; i < nb; i++){
+        *(dest+i) = *(source+i);
+    }
 }
