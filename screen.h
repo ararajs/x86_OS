@@ -51,7 +51,7 @@ int handle_scrolling(int offset){
     }
 
     for (int i = 1; i < MAX_ROWS; i++){
-        memcpy((uint8_t*) (get_screen_offset(0,i) + VIDEO_ADDR) ,(uint8_t*) (get_screen_offset(0,i-1) + VIDEO_ADDR), MAX_COL*2);
+        mem_cpy((uint8_t*) (get_screen_offset(0,i) + VIDEO_ADDR) ,(uint8_t*) (get_screen_offset(0,i-1) + VIDEO_ADDR), MAX_COL*2);
     }
 
     uint8_t* last_line = (uint8_t*) (get_screen_offset(0, MAX_ROWS-1) + VIDEO_ADDR);
@@ -64,7 +64,7 @@ int handle_scrolling(int offset){
     return offset;
 }
 
-void print_c(char input, int col, int row, char att_byte){
+void print_c(char input, int col, int row, char att_byte, int isCursor){
     volatile unsigned char* vid_memory = (unsigned char*) VIDEO_ADDR;
     if (!att_byte){
         att_byte = COLOR;
@@ -85,9 +85,11 @@ void print_c(char input, int col, int row, char att_byte){
         *(vid_memory+offset+1) = att_byte;
     }
 
-    offset += 2;
-    offset = handle_scrolling(offset);
-    set_cursor(offset);
+    if (isCursor){
+        offset += 2;
+        offset = handle_scrolling(offset);
+        set_cursor(offset);
+    }
 }
 
 void print_at(char* msg, int row, int col){
@@ -97,7 +99,7 @@ void print_at(char* msg, int row, int col){
     
     int c = 0;
     while (*(msg +c) != 0){
-        print_c(*(msg+c), col+c, row, COLOR);
+        print_c(*(msg+c), col+c, row, COLOR, 1);
         c++;
     }
 }
@@ -109,7 +111,7 @@ void print(char* message){
 void clear_screen(){
     for (int row = 0; row < MAX_ROWS; row++){
         for (int col = 0; col < MAX_COL; col++){
-            print_c(' ', col, row, COLOR);
+            print_c(' ', col, row, COLOR, 1);
         }
     }
     set_cursor(get_screen_offset(0,0));

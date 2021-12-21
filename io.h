@@ -1,16 +1,4 @@
 
-void stop_interrupt(){
-    __asm__ __volatile__(
-        "cli"
-    );
-}
-
-void start_interrupt(){
-    __asm__ __volatile__(
-        "sti"
-    );
-}
-
 uint8_t port_byte_in(uint16_t port){
     //Input from port, stored at result;
     uint8_t result;
@@ -44,8 +32,28 @@ void port_word_out (uint16_t port, uint16_t data){
             );
 }
 
-void memcpy(uint8_t* source, uint8_t* dest, int nb){
+void mem_cpy(uint8_t* source, uint8_t* dest, int nb){
     for (int i = 0; i < nb; i++){
         *(dest+i) = *(source+i);
     }
+}
+
+void  *memset(void *b, int c, int len)
+{
+  unsigned char *p = b;
+  while(len > 0)
+    {
+      *p = c;
+      p++;
+      len--;
+    }
+  return(b);
+}
+
+void enable(){
+  __asm__ __volatile__ ("sti");
+}
+
+void disable (){
+  __asm__ __volatile__ ("cli");
 }

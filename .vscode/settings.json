@@ -1,6 +1,9 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "io.h": "c"
+        "io.h": "c",
+        "ps_2.h": "c",
+        "string.h": "c",
+        "screen.h": "c"
     }
 }

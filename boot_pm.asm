@@ -23,7 +23,7 @@ kernel_load:
     mov dx, kernel_msg
     call print_string
     mov bx, KERNEL_ADDR
-    mov dh, 25
+    mov dh, 33
     mov dl, [boot_drive_adr]
     call load_disk
     ret

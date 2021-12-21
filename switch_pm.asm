@@ -17,8 +17,6 @@ initialize_pm:
     mov es, ax
     mov ss, ax
     mov gs, ax 
-
     mov ebp, 0x90000
     mov esp, ebp
     call start_pm
-
