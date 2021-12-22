@@ -1,11 +1,8 @@
 uint32_t tick = 0;
 static void timer_callback (registers_t reg){
     tick++;
-    //print_c('I', 0, 0, COLOR, 1);
-    print("Ticks\n");
-    if (tick == 18){
-        print("hi!\n");
-        irq_handlers[reg.int_no] = 0;
+    if (tick%18 == 0){
+        print("Hi!\n");
     }
 }
 

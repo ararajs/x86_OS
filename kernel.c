@@ -7,11 +7,13 @@
 #include "idt.h"
 #include "isr.h"
 #include "timer.h"
+#include "keyboard.h"
 
 /* TODO
 Setup IDT [X]
 Ensure IDT and IRQs work [X]
-Setup PS/2 Key char capture interface []
+Setup PS/2 Key char capture interface [X]
+Work on mouse interface
 */
 
 void _main(){;
@@ -25,14 +27,18 @@ void _main(){;
     //disable_cursor();
     //set_cursor(0x12);
     //
-    //set_ps2();
-    init_timer(1);
+    //
+    init_kb();
+
+
     //_asm__ __volatile__ ("int $0x00");
     //__asm__ __volatile__ ("int $0x03");
     //print_c('E', 9, 0, COLOR,1);
-    /*while (1){
-        read_time_cmos();
-        print_c(port_byte_in(0x60),25,0,COLOR,1);
-    }*/
+    while (1){
+        //read_time_cmos();
+        //print_c(port_byte_in(0x60), 25, 0, COLOR, 1);
+        take_input();
+        
+    }
 }
 
